@@ -27,7 +27,6 @@
     "express-fileupload": "^1.1.6",
     "express-handlebars": "^3.0.0",
     "lazyload": "^2.0.0-rc.2",
-    "mysql": "^2.18.1",
     "mysql2": "^1.7.0",
     "sequelize": "^4.41.2"
   },
