@@ -1,28 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
-  
-    //
-    var User = sequelize.define("User", {
-  
-      
-      message_id: {
-        text: DataTypes.INT,
-        allowNull: false,
-        unique: true,
-        primaryKey: true
-      },
-  
-      comment: {
-        text: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        allowNull: false
-      },
-  
-    });
-  
-    Comment.sync({force: true});
-    Comment.hasOne(User);
-    Comment.hasMany(User);
-    
-    return Comment;
+  //
+  var Comment = sequelize.define("Comment", {
+    // eslint-disable-next-line camelcase
+    message_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      primaryKey: true
+    },
+    comment: {
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      allowNull: false
+    }
+  });
+
+  Comment.sync({ force: true });
+  Comment.assosiate = function(models){
+    Comment.hasOne(models.User, { onDelete: "cascade" });
   };
-  
+  return Comment;
+};
