@@ -1,10 +1,9 @@
 /* eslint-disable camelcase */
 require("dotenv").config();
+
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expfile = require("express-fileupload");
-// eslint-disable-next-line no-unused-vars
-var fs = require("fs");
 
 var db = require("./models");
 
@@ -48,7 +47,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize.sync(syncOptions).then(() => {
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
