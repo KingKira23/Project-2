@@ -1,12 +1,16 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load splash page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+    res.render("splashPage");
+  });
+
+  //load gallery page
+  app.get("/gallery", function(req, res) {
+    db.Art.findAll({}).then(function(allArt) {
+      res.render("gallery", {
+        art: allArt
       });
     });
   });

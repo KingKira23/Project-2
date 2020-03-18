@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="main">
+        {{> header splash=false}}
+        <div class="row"> <!-- Image area -->
+            <div class="col">
+                <img src="{{ artUrl }}" alt="{{ artTitle }}"></img>
+                <p>{{ artTitle }}</p>
+                <p>{{ artist }}</p>
+            </div>
+        </div>
+        <div class="row"> <!-- Comments area -->
+            <div class="col">
+                {{#each comment}}
+                    <p>{{commentText}} - {{commentAuthor}}</p>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
