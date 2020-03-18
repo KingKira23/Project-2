@@ -1,3 +1,27 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+
+.head-color {
+  background-color: #966515;
+}
+
+.splash-head{
+  opacity: 0.6;
+}
+
+.container-fluid {
+  min-height: 100%;
+}
+
+
+.vanta-canvas{
+  min-height: 100% !important;
+  height: 100%;
+}
+
+.btn-primary{
+  background-color: #97ABB1 !important;
+  border-color: rgb(180, 202, 209) !important;
+}
