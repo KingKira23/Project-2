@@ -15,6 +15,19 @@ module.exports = function(app) {
     });
   });
 
+  //load gallery page
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
+  app.get("/gallery/:id", function(req, res) {
+    db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+      res.render("viewArt", {
+        art: response
+      });
+    });
+  });
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {

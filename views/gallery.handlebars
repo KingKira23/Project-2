@@ -1,10 +1,13 @@
+<h1>Gallery</h1>
 <div class="container-fluid">
     <div class="main">
         {{> header splash=false}}
         <div class="row">
             {{#each art}}
             <div class="col-xl-4 col-m-6 col-xs-1">
-                <img src="{{ artUrl }}" alt="{{ artTitle }}"></img>
+                <div class="frame">
+                    <img src="{{ artUrl }}" alt="{{ artTitle }}" data-id="{{id}}" class="art"></img>
+                </div>
                 <p>{{ artTitle }}</p>
                 <p>{{ artist }}</p>
             </div>
