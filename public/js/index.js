@@ -1,8 +1,11 @@
+// var cloudinary = "https://api.cloudinary.com/v1_1/andreslong/upload";
+// var cloudinaryPreset = "ozelz8xy";
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var $uploadImg = $("#upload-button");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -27,6 +30,28 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  startUpload: function(form) {
+    $.ajax({
+      "async": true,
+      "crossDomain": true,
+      "url": "/api/uploads",
+      "method": "POST",
+      "headers": {
+        "cache-control": "no-cache",
+        "postman-token": "713a4d67-e756-42f9-8214-179c033bad45"
+      },
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    })
+      .then(function(res) {
+        console.log(res);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 };
 
@@ -63,7 +88,6 @@ var refreshExamples = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
   var example = {
     text: $exampleText.val().trim(),
     description: $exampleDescription.val().trim()
@@ -94,6 +118,20 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+var handleUpload = function(event) {
+  var file = event.target.files[0];
+  console.log(file);
+  console.log(event.target);
+  console.log(event.target.files);
+  var formData = new FormData();
+  formData.append("photo", file.name);
+  API.startUpload(formData);
+  // formData.append("upload_preset", cloudinaryPreset);
+  // console.log(formData);
+  // API.startUpload(formData);
+};
+
 // Add event listeners to the submit and delete buttons
+$uploadImg.on("change", handleUpload);
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
