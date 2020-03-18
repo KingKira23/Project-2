@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // var cloudinary = "https://api.cloudinary.com/v1_1/andreslong/upload";
 // var cloudinaryPreset = "ozelz8xy";
 // Get references to page elements
