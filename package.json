@@ -1,4 +1,26 @@
 {
+<<<<<<< HEAD
+  "name": "Project-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShawnATX/Project-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShawnATX/Project-2/issues"
+  },
+  "homepage": "https://github.com/ShawnATX/Project-2#readme",
+  "dependencies": {
+    "eslint": "^6.8.0"
+=======
   "name": "node-handlebars-boilerplate",
   "version": "1.0.0",
   "description": "Project 2 Starter",
@@ -26,5 +48,6 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
+>>>>>>> 9644dbf2a8a02d21db8e2909e2fe2883700a292d
   }
 }
