@@ -26,8 +26,7 @@ module.exports = function(app, cloudinary) {
   // Upload route
   // eslint-disable-next-line no-unused-vars
   app.post("/api/uploads", function(req, res) {
-    console.log(req);
-    cloudinary.uploader.upload(req.body.photo, function(
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
       err,
       result
     ) {

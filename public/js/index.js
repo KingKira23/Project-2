@@ -124,7 +124,7 @@ var handleUpload = function(event) {
   console.log(event.target);
   console.log(event.target.files);
   var formData = new FormData();
-  formData.append("photo", file.name);
+  formData.append("photo", file);
   API.startUpload(formData);
   // formData.append("upload_preset", cloudinaryPreset);
   // console.log(formData);
