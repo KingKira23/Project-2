@@ -25,9 +25,21 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
 
+    password: {
+      text: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      allowNull: false
+
+    },
+
   });
 
   User.sync({force: true});
-
+  User.hasMany(Comment);
+  User.hasMany(Art);
+  
   return User;
 };
+
+
+

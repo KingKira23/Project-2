@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
   
     Art.sync({force: true});
     Art.hasOne(User);
-
+    Art.hasMany(User)
   
     return Art;
   };

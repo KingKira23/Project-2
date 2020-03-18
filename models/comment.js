@@ -21,7 +21,8 @@ module.exports = function(sequelize, DataTypes) {
   
     Comment.sync({force: true});
     Comment.hasOne(User);
-  
+    Comment.hasMany(User);
+    
     return Comment;
   };
   
