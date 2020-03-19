@@ -6,6 +6,11 @@ html, body {
   line-height: 2.5;
 }
 
+.expand-footer {
+  position: fixed;
+  bottom:0;
+  width: 80%;
+}
 
 .head-color {
   background-color: #966515;

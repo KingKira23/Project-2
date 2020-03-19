@@ -2,6 +2,16 @@ require("dotenv").config();
 
 var express = require("express");
 var exphbs = require("express-handlebars");
+var expfile = require("express-fileupload");
+// Middleware
+var cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_USER,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET
+});
+
 
 var db = require("./models");
 
@@ -12,6 +22,8 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(expfile({ useTempFiles: true }));
+
 
 // Handlebars
 app.engine(

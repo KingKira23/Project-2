@@ -44,6 +44,7 @@
             {{!-- block which will need to be populated with a {#each comment}. --}}
             <div class="row">
                 <div class="col-12">
+                    {{ artTitle}} - {{ commentBody }}
                 </div>
                 <div class="col-12">
                 </div>
@@ -51,6 +52,21 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+    {{!-- user image upload form --}}
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#uploadFormContainer" aria-expanded="false" aria-controls="uploadFormContainer">Upload new art here</button>
+    <div class="collapse expandFooter" id="uploadFormContainer">
+        <div class="card card-body">
+            <form action="POST" id="imageUpload">
+                <input type="file" name="imgUpload" id="imgUpload">
+            </form>
+        </div>
+    </div>
+
 </div>
+
+<script>
+
+
+</script>

@@ -1,3 +1,19 @@
+var handleUpload = function(event) {
+  var file = event.target.files[0];
+  console.log(file);
+  console.log(event.target);
+  console.log(event.target.files);
+  var formData = new FormData();
+  formData.append("photo", file);
+  API.startUpload(formData);
+  // formData.append("upload_preset", cloudinaryPreset);
+  // console.log(formData);
+  // API.startUpload(formData);
+};
+
+// Add event listeners to the submit and delete buttons
+$uploadImg.on("change", handleUpload);
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");

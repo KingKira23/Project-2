@@ -32,6 +32,19 @@ module.exports = function(app) {
     });
   });
 
+  //image upload to 3rd party image host
+  app.post("/api/uploads", function(req, res) {
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
+      err,
+      result
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+    });
+  });
+
   // Create a new art
   app.post("/api/art", function(req, res) {
     db.Art.create(req.body).then(function(artBudDB) {
