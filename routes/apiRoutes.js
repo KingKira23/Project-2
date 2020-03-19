@@ -85,4 +85,17 @@ module.exports = function(app, cloudinary) {
       res.json(artBudDB);
     });
   });
+
+  app.post("/api/uploads", function(req, res) {
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
+      err,
+      result
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+      res.status(200).end();
+    });
+  });
 };
