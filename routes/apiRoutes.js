@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function(app, cloudinary) {
   // Get all users
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {
@@ -29,6 +29,19 @@ module.exports = function(app) {
   app.get("/api/art", function(req, res) {
     db.Art.findAll({}).then(function(artBudDB) {
       res.json(artBudDB);
+    });
+  });
+
+  //image upload to 3rd party image host
+  app.post("/api/uploads", function(req, res) {
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
+      err,
+      result
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
     });
   });
 
