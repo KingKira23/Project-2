@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row-fluid ">
-            <div class="col text-center">
+            <div class="col text-center align-middle">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
             </div>
         </div>
@@ -26,8 +26,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="username" id="username">
-                    <input type="password" name="password" id="password">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username"><br>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password"><br>
+                    <a href="/signup" class="mt-1">Not a user? Sign up here!</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -39,9 +42,6 @@
 
 
 </div>
-<script src="/js/three.r95.min.js"></script>
-<script src="/js/vanta.birds.min.js"></script>
-<script src="/js/vanta.js"></script>
 {{!-- listen for login and handle form --}}
 <script>
     $(function() {
