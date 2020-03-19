@@ -1,0 +1,60 @@
+<div class="container-fluid" id="background-area">
+    <div class="main">
+        {{> header splash=false}}
+        <div class="jumbotron">
+            <h1 class="display-4">Register here!</h1>
+            <p class="lead">Regiser for access to uploading original art, commenting on art in the gallery, and special access to unique offers!</p>
+            <hr class="my-4">
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>                
+                <button type="submit" class="btn btn-primary" id="signup">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const validatePassword = (password) => (password.length > 5);
+    const validateName = (value) => (value.length > 1);
+
+    $(function() {
+        $("#signup").on("click", function(event) {
+            event.preventDefault();
+            console.log("signup!");
+            let password = $("#password").val();
+            let name = $("#name").val();
+            let username = $("#username").val();
+
+            while (!validatePassword(password) || !validateName(name) || !validateName(username)) {
+                $("#signup-form").append("<p class='content-warning'>Please enter a password 6 characters or longer, a username 2 characters or long, and a name 2 characters or longer.");
+            }
+
+            const newUser = {
+                username,
+                name,
+                password
+            };
+
+            $.ajax({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                type: "POST",
+                url: "api/signup",
+                data: JSON.stringify(newUser)
+                });
+        })
+    });
+</script>

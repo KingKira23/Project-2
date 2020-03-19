@@ -1,12 +1,29 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load splash page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+    res.render("splashPage");
+  });
+
+  //load gallery page
+  app.get("/gallery", function(req, res) {
+    db.Art.findAll({}).then(function(allArt) {
+      res.render("gallery", {
+        art: allArt
+      });
+    });
+  });
+
+  //load gallery page
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
+  app.get("/gallery/:id", function(req, res) {
+    db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+      res.render("viewArt", {
+        art: response
       });
     });
   });

@@ -1,55 +1,50 @@
-const bcrypt = require("bcryptjs")
+var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
-  
   //
   var User = sequelize.define("User", {
-
-    
+    // eslint-disable-next-line camelcase
     user_id: {
-      text: DataTypes.INT,
+      text: DataTypes.STRING,
       allowNull: false,
       unique: true,
       primaryKey: true
     },
-    
-    
-    name: {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    allowNull: false
 
+    name: {
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      allowNull: false
     },
 
     imgIcon: {
-      text: DataTypes.STRING,
+      type: DataTypes.STRING,
       description: DataTypes.TEXT,
       allowNull: true
     },
 
     password: {
-      text: DataTypes.STRING,
+      type: DataTypes.STRING,
       description: DataTypes.TEXT,
       allowNull: false
-
-    },
-
+    }
   });
 
-  User.prototype.validPassword = (password) => {
+  User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
 
-  User.addHook("beforeCreate", (user) => {
-    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10))
-  })
+  User.addHook("beforeCreate", function(user) {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  });
 
-  User.sync({force: true});
-  User.hasMany(Comment);
-  User.hasMany(Art);
-  
+  User.sync({ force: true });
+  User.assosiate = function(models) {
+    User.hasMany(models.Art, { onDelete: "cascade" });
+  };
+  User.assosiate = function(models) {
+    User.hasOne(models.Comment, { onDelete: "cascade" });
+  };
+
   return User;
 };
-
-
-
