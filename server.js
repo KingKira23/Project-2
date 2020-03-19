@@ -35,8 +35,8 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app, cloudinary);
+require("./routes/htmlRoutes")(app, cloudinary);
 
 var syncOptions = { force: false };
 

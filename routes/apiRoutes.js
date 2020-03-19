@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function(app, cloudinary) {
   // Get all users
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {
