@@ -6,20 +6,18 @@ var handleUpload = function(event) {
   var formData = new FormData();
   formData.append("photo", file);
   API.startUpload(formData);
-  // formData.append("upload_preset", cloudinaryPreset);
-  // console.log(formData);
-  // API.startUpload(formData);
 };
 
 // Add event listeners to the submit and delete buttons
-$uploadImg.on("change", handleUpload);
 
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var $uploadImg = $("#imgUpload");
 
+$uploadImg.on("change", handleUpload);
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
