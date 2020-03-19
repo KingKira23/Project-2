@@ -1,33 +1,26 @@
+var handleUpload = function(event) {
+  console.log("Handling upload");
+  var file = event.target.files[0];
+  console.log(file);
+  console.log(event.target);
+  console.log(event.target.files);
+  var formData = new FormData();
+  formData.append("photo", file);
+  API.startUpload(formData);
+};
+
+// Add event listeners to the submit and delete buttons
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var $uploadImg = $("#imgUpload");
 
+$uploadImg.on("change", handleUpload);
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  },
   startUpload: function(form) {
     $.ajax({
       async: true,
@@ -116,20 +109,6 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-var handleUpload = function(event) {
-  var file = event.target.files[0];
-  console.log(file);
-  console.log(event.target);
-  console.log(event.target.files);
-  var formData = new FormData();
-  formData.append("photo", file);
-  API.startUpload(formData);
-  // formData.append("upload_preset", cloudinaryPreset);
-  // console.log(formData);
-  // API.startUpload(formData);
-};
-
 // Add event listeners to the submit and delete buttons
-$uploadImg.on("change", handleUpload);
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
