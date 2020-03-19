@@ -1,6 +1,31 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
-module.exports = function(app, cloudinary) {
+module.exports = function(app) {
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/gallery" + req.user.username);
+  });
+
+  app.post("/api/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password,
+      name: req.body.name
+    })
+      .then(function() {
+        res.redirect("/gallery");
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
   // Get all users
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {

@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Art.assosiate = function(models){
+  Art.assosiate = function(models) {
     Art.hasOne(models.User, { onDelete: "cascade" });
   };
   Art.sync({ force: true });
