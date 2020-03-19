@@ -27,6 +27,28 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  startUpload: function(form) {
+    $.ajax({
+      "async": true,
+      "crossDomain": true,
+      "url": "/api/uploads",
+      "method": "POST",
+      "headers": {
+        "cache-control": "no-cache",
+        "postman-token": "713a4d67-e756-42f9-8214-179c033bad45"
+      },
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    })
+      .then(function(res) {
+        console.log(res);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 };
 
@@ -94,6 +116,20 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+var handleUpload = function(event) {
+  var file = event.target.files[0];
+  console.log(file);
+  console.log(event.target);
+  console.log(event.target.files);
+  var formData = new FormData();
+  formData.append("photo", file);
+  API.startUpload(formData);
+  // formData.append("upload_preset", cloudinaryPreset);
+  // console.log(formData);
+  // API.startUpload(formData);
+};
+
 // Add event listeners to the submit and delete buttons
+$uploadImg.on("change", handleUpload);
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
