@@ -2,16 +2,10 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
-  app.post(
-    "/api/login",
-    passport.authenticate("local"),
-    { successRedirect: "/", failureRedirect: "/login", failureFlash: true },
-    function(req, res) {
-      console.log(req.body);
-      res.json(req.username);
-      // res.redirect("/gallery" + req.user.username);
-    }
-  );
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    console.log(req.body);
+    res.redirect("/gallery" + req.user.username);
+  });
 
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
