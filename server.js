@@ -33,8 +33,6 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-
-// Routes
 require("./routes/apiRoutes")(app, cloudinary);
 require("./routes/htmlRoutes")(app, cloudinary);
 

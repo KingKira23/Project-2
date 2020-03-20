@@ -42,7 +42,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   //User.sync({ force: true });
-  User.assosiate = function (models) {
+  User.associate = function (models) {
     User.hasMany(models.Art, { onDelete: "cascade" });
     User.hasMany(models.Comment, { onDelete: "cascade" });
   };
