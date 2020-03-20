@@ -2,12 +2,6 @@ module.exports = function(sequelize, DataTypes) {
   //
   var Art = sequelize.define("Art", {
     // eslint-disable-next-line camelcase
-    art_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKey: true
-    },
 
     // eslint-disable-next-line camelcase
     art_name: {
@@ -23,9 +17,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Art.assosiate = function(models){
-    Art.hasOne(models.User, { onDelete: "cascade" });
+  Art.associate = function(models) {
+    Art.belongsTo(models.User);
   };
-  Art.sync({ force: true });
+  //Art.sync({ force: true });
   return Art;
 };
