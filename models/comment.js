@@ -17,5 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   };
+  //Comment.sync({ force: true });
+
   return Comment;
 };

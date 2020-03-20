@@ -11,7 +11,6 @@ $(document).ready(function() {
   const buildGallery = art => {
     for (let key of art) {
       let nextImage = key;
-      console.log(nextImage);
       $galleryContainer.append(
         `<div class="col-xl-4 col-m-6 col-xs-12">
             <div class="frame viewImage">
@@ -33,4 +32,4 @@ $(document).ready(function() {
   };
 });
 
-$(document).on("click", "div.viewImage", viewImage);
+//$(document).on("click", "div.viewImage", viewImage);

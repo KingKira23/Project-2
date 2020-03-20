@@ -7,7 +7,6 @@ module.exports = function(app, cloudinary) {
   });
 
   app.post("/api/signup", function(req, res) {
-    console.log(req.body);
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -92,7 +91,6 @@ module.exports = function(app, cloudinary) {
   });
 
   app.post("/api/uploads", function(req, res) {
-    console.log(req);
     cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
       err,
       result

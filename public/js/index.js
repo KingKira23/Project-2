@@ -3,7 +3,6 @@ var $uploadImg = $("#imgUpload");
 // The API object contains methods for each kind of request we'll make
 var API = {
   startUpload: function(form) {
-    console.log(form);
     $.ajax({
       "async": true,
       "crossDomain": true,
@@ -30,12 +29,8 @@ var API = {
 var handleUpload = function(event) {
   console.log("Handling upload");
   var file = event.target.files[0];
-  console.log(file);
-  console.log(event.target);
-  console.log(event.target.files);
   var formData = new FormData();
   formData.append("photo", file);
-  console.log(formData);
   API.startUpload(formData);
 };
 

@@ -58,16 +58,10 @@ db.sequelize.sync(syncOptions).then(() => {
 });
 function runSeeds() {
   seed.addUser();
-  seed.addArt();
-  seed.addComment1();
-  seed.addComment2();
-  return;
 }
-
 function seedTime() {
   setTimeout(runSeeds, 3000);
 }
-
 seedTime();
 
 module.exports = app;
