@@ -2,10 +2,16 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    console.log(req.body);
-    res.redirect("/gallery" + req.user.username);
-  });
+  app.post(
+    "/api/login",
+    passport.authenticate("local"),
+    { successRedirect: "/", failureRedirect: "/login", failureFlash: true },
+    function(req, res) {
+      console.log(req.body);
+      res.json(req.username);
+      // res.redirect("/gallery" + req.user.username);
+    }
+  );
 
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
@@ -73,11 +79,11 @@ module.exports = function(app, cloudinary) {
   });
 
   // Create a new art
-  app.post("/api/art", function(req, res) {
-    db.Art.create(req.body).then(function(artBudDB) {
-      res.json(artBudDB);
-    });
-  });
+  // app.post("/api/art", function(req, res) {
+  //   db.Art.create(req.body).then(function(artBudDB) {
+  //     res.json(artBudDB);
+  //   });
+  // });
 
   // Delete an art by id
   app.delete("/api/art/:art_id", function(req, res) {
@@ -110,6 +116,19 @@ module.exports = function(app, cloudinary) {
       artBudDB
     ) {
       res.json(artBudDB);
+    });
+  });
+
+  app.post("/api/uploads", function(req, res) {
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
+      err,
+      result
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+      res.status(200).end();
     });
   });
 };

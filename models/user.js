@@ -4,13 +4,6 @@ module.exports = function(sequelize, DataTypes) {
   //
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
-    // user_id: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   unique: true,
-    //   primaryKey: true
-    // },
-
     name: {
       type: DataTypes.STRING,
       description: DataTypes.TEXT,
@@ -48,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
     );
   });
 
-  User.sync({ force: true });
+  //User.sync({ force: true });
   User.assosiate = function(models) {
     User.hasMany(models.Art, { onDelete: "cascade" });
   };

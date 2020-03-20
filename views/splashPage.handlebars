@@ -2,15 +2,15 @@
     <div class="main">
         {{> header splash=true}}
 
-        <div class="row-fluid mb-3">
+        <div class="row-fluid mt-4 mb-3">
             <div class="col text-center">
-                <a href="/gallery"><button type="button" class="btn btn-primary btn-lg" id="gallery">View Gallery</button></a>
+                <a href="/gallery"><button type="button" class="btn btn-primary btn-lg mt-4" id="gallery">View Gallery</button></a>
 
             </div>
         </div>
-        <div class="row-fluid ">
+        <div class="row-fluid mt-3">
             <div class="col text-center align-middle">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Login</button>
+            <button type="button" class="btn btn-primary btn-lg mt-4" data-toggle="modal" data-target="#loginModal">Login</button>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
         $("#sendLogin").on("submit", function(event) {
             event.preventDefault();
             const userLogin = {
-                username: $("#username").val(),
+                username: $("#username").val().trim(),
                 password: $("#password").val()
             }
             console.log("User login", userLogin);
