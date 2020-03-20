@@ -11,8 +11,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
-
 var db = require("./models");
+var seed = require("./seed");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -24,7 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(expfile({ useTempFiles: true }));
-
 
 // Handlebars
 app.engine(
@@ -57,5 +56,18 @@ db.sequelize.sync(syncOptions).then(function() {
     );
   });
 });
+function runSeeds() {
+  seed.addUser();
+  seed.addArt();
+  seed.addComment1();
+  seed.addComment2();
+  return;
+}
+
+function seedTime() {
+  setTimeout(runSeeds, 3000);
+}
+
+seedTime();
 
 module.exports = app;
