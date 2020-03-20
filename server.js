@@ -14,6 +14,8 @@ cloudinary.config({
 
 
 var db = require("./models");
+var seed = require("./seed")(db);
+
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -58,5 +60,10 @@ db.sequelize.sync(syncOptions).then(() => {
     );
   });
 });
+
+seed.addUser();
+seed.addArt();
+seed.addComment1();
+seed.addComment2();
 
 module.exports = app;

@@ -46,11 +46,11 @@ module.exports = function(app, cloudinary) {
   });
 
   // Create a new art
-  app.post("/api/art", function(req, res) {
-    db.Art.create(req.body).then(function(artBudDB) {
-      res.json(artBudDB);
-    });
-  });
+  // app.post("/api/art", function(req, res) {
+  //   db.Art.create(req.body).then(function(artBudDB) {
+  //     res.json(artBudDB);
+  //   });
+  // });
 
   // Delete an art by id
   app.delete("/api/art/:art_id", function(req, res) {
