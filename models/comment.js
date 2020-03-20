@@ -11,7 +11,11 @@ module.exports = function(sequelize, DataTypes) {
 
   Comment.sync({ force: true });
   Comment.assosiate = function(models) {
-    Comment.belongsTo(models.User);
+    Comment.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
   return Comment;
 };
