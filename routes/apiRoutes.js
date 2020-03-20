@@ -14,7 +14,7 @@ module.exports = function(app, cloudinary) {
       name: req.body.name
     })
       .then(function() {
-        res.redirect(307, "/gallery");
+        res.redirect("/gallery");
       })
       .catch(function(err) {
         res.status(401).json(err);

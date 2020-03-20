@@ -4,12 +4,12 @@ module.exports = function(sequelize, DataTypes) {
   //
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
-    user_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKey: true
-    },
+    // user_id: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: true,
+    //   primaryKey: true
+    // },
 
     name: {
       type: DataTypes.STRING,
@@ -41,7 +41,6 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   User.addHook("beforeCreate", function(user) {
-    console.log(user);
     user.password = bcrypt.hashSync(
       user.password,
       bcrypt.genSaltSync(10),
