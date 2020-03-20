@@ -1,7 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function(app, cloudinary) {
   app.post("/login", passport.authenticate("local"), function(req, res) {
     res.redirect("/gallery" + req.user.username);
   });
@@ -54,6 +54,20 @@ module.exports = function(app) {
   app.get("/api/art", function(req, res) {
     db.Art.findAll({}).then(function(artBudDB) {
       res.json(artBudDB);
+    });
+  });
+
+  //image upload to 3rd party image host
+  // eslint-disable-next-line no-unused-vars
+  app.post("/api/uploads", function(req, res) {
+    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
+      err,
+      result
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
     });
   });
 
