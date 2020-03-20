@@ -9,6 +9,9 @@ module.exports = function(app) {
   //load gallery page
   app.get("/gallery", function(req, res) {
     db.Art.findAll({}).then(function(allArt) {
+      for (var art in allArt) {
+        console.log(allArt[art]);
+      }
       res.render("gallery", {
         art: allArt
       });

@@ -2,9 +2,14 @@
     <div class="main">
         {{> header splash=false}}
 <h1>Gallery</h1>
-        <div class="row">
+    <div>
+        <div class="row" id="galleryContainer">
+            
+        </div>
+
+        {{!-- <div class="row">
             {{#each art}}
-            <div class="col-xl-4 col-m-6 col-xs-1">
+            <div class="col-xl-4 col-m-6 col-xs-12">
                 <div class="frame">
                     <img src="{{ artUrl }}" alt="{{ artTitle }}" data-id="{{id}}" class="art"></img>
                 </div>
@@ -12,7 +17,9 @@
                 <p>{{ artist }}</p>
             </div>
             {{/each}}
-        </div>
+        </div> --}}
 
     </div>
+    </div>
 </div>
+<script src="/js/gallery.js"></script>
