@@ -66,7 +66,7 @@ function runSeeds() {
 }
 
 function seedTime() {
-  setTimeout(runSeeds, 5000);
+  setTimeout(runSeeds, 3000);
 }
 
 seedTime();

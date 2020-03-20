@@ -41,7 +41,7 @@ module.exports = function (sequelize, DataTypes) {
     );
   });
 
-  User.sync({ force: true });
+  //User.sync({ force: true });
   User.assosiate = function (models) {
     User.hasMany(models.Art, { onDelete: "cascade" });
   };
