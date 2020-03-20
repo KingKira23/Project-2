@@ -2,14 +2,13 @@ module.exports = function(sequelize, DataTypes) {
   //
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
-    user_id: {
+    name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKey: true
+      description: DataTypes.TEXT,
+      allowNull: false
     },
 
-    name: {
+    username: {
       type: DataTypes.STRING,
       description: DataTypes.TEXT,
       allowNull: false

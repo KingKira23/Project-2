@@ -15,9 +15,16 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   Art.assosiate = function(models){
-    Art.hasOne(models.User);
-    Art.hasMany(models.Comment);
+    Art.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+    Art.hasMany(models.Comment, {
+      onDelete: "cascade"
+    });
   };
-  Art.sync({ force: true });
+
+  //Art.sync({ force: true });
   return Art;
 };
