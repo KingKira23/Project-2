@@ -1,6 +1,30 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
+  app.post("/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/gallery" + req.user.username);
+  });
+
+  app.post("/api/signup", function(req, res) {
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password,
+      name: req.body.name
+    })
+      .then(function() {
+        res.redirect("/gallery");
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
   // Get all users
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {
@@ -28,26 +52,6 @@ module.exports = function(app, cloudinary) {
   // Get all art
   app.get("/api/art", function(req, res) {
     db.Art.findAll({}).then(function(artBudDB) {
-      res.json(artBudDB);
-    });
-  });
-
-  //image upload to 3rd party image host
-  app.post("/api/uploads", function(req, res) {
-    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
-      err,
-      result
-    ) {
-      if (err) {
-        throw err;
-      }
-      console.log(result);
-    });
-  });
-
-  // Create a new art
-  app.post("/api/art", function(req, res) {
-    db.Art.create(req.body).then(function(artBudDB) {
       res.json(artBudDB);
     });
   });
@@ -94,7 +98,11 @@ module.exports = function(app, cloudinary) {
       if (err) {
         throw err;
       }
-      console.log(result);
+      db.Art.create({
+        art_name: req.files.photo.name,
+        url_link: result.url,
+        UserId: 1
+      })
       res.status(200).end();
     });
   });

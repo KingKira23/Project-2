@@ -1,7 +1,7 @@
 <div class="container-fluid" id="background-area">
     <div class="main">
         {{> header splash=false}}
-        <div class="jumbotron">
+        <div class="jumbotron mx-4 mt-3">
             <h1 class="display-4">Register here!</h1>
             <p class="lead">Regiser for access to uploading original art, commenting on art in the gallery, and special access to unique offers!</p>
             <hr class="my-4">
@@ -28,25 +28,27 @@
 <script>
     const validatePassword = (password) => (password.length > 5);
     const validateName = (value) => (value.length > 1);
+    const clearFields = () => {
+        $("#password").val("");
+    }
 
     $(function() {
         $("#signup").on("click", function(event) {
             event.preventDefault();
-            console.log("signup!");
             let password = $("#password").val();
             let name = $("#name").val();
             let username = $("#username").val();
+            console.log(password, name, username);
 
-            while (!validatePassword(password) || !validateName(name) || !validateName(username)) {
+            if ((validatePassword(password) === false) || (validateName(name) === false) || (validateName(username) === false)) {
                 $("#signup-form").append("<p class='content-warning'>Please enter a password 6 characters or longer, a username 2 characters or long, and a name 2 characters or longer.");
+                return;
             }
-
             const newUser = {
                 username,
                 name,
                 password
             };
-
             $.ajax({
                 headers: {
                     "Content-Type": "application/json"
@@ -54,6 +56,9 @@
                 type: "POST",
                 url: "api/signup",
                 data: JSON.stringify(newUser)
+                }).then(function(data) {         
+                    window.location.replace("/gallery");
+                    // If there's an error, handle it by throwing up a bootstrap alert
                 });
         })
     });

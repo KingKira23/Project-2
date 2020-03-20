@@ -8,11 +8,7 @@ module.exports = function(app) {
 
   //load gallery page
   app.get("/gallery", function(req, res) {
-    db.Art.findAll({}).then(function(allArt) {
-      res.render("gallery", {
-        art: allArt
-      });
-    });
+    res.render("gallery");
   });
 
   //load gallery page
@@ -40,15 +36,6 @@ module.exports = function(app) {
       username: req.params.id
     });
   });
-
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
