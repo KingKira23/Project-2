@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Comment.sync({ force: true });
   Comment.assosiate = function(models) {
-    Comment.hasOne(models.User, { onDelete: "cascade" });
+    Comment.belongsTo(models.User);
   };
   return Comment;
 };
