@@ -1,7 +1,6 @@
 var bcrypt = require("bcryptjs");
 
-module.exports = function (sequelize, DataTypes) {
-  //
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
     name: {
@@ -29,11 +28,11 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  User.prototype.validPassword = function (password) {
+  User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
 
-  User.addHook("beforeCreate", function (user) {
+  User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(
       user.password,
       bcrypt.genSaltSync(10),
@@ -41,14 +40,16 @@ module.exports = function (sequelize, DataTypes) {
     );
   });
 
+<<<<<<< HEAD
   //User.sync({ force: true });
   User.associate = function (models) {
+=======
+  User.associate = function(models) {
+>>>>>>> 03bfd11d133020d0fb189d4aed12ea244d076e12
     User.hasMany(models.Art, { onDelete: "cascade" });
     User.hasMany(models.Comment, { onDelete: "cascade" });
   };
-  // User.assosiate = function (models) {
-  //   User.hasOne(models.Comment, { onDelete: "cascade" });
-  // };
+  //User.sync({ force: true });
 
   return User;
 };

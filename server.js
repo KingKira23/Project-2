@@ -2,7 +2,12 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expfile = require("express-fileupload");
-// Middleware
+var db = require("./models");
+
+var app = express();
+var PORT = process.env.PORT || 3000;
+
+app.use(expfile({ useTempFiles: true }));
 var cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -11,19 +16,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
-var db = require("./models");
 var seed = require("./seed");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
-
 // Middleware
-app.use(expfile({ useTempFiles: true }));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(expfile({ useTempFiles: true }));
 
 // Handlebars
 app.engine(
@@ -34,7 +33,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app, cloudinary);
-require("./routes/htmlRoutes")(app, cloudinary);
+require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };
 
@@ -56,16 +55,10 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 function runSeeds() {
   seed.addUser();
-  seed.addArt();
-  seed.addComment1();
-  seed.addComment2();
-  return;
 }
-
 function seedTime() {
   setTimeout(runSeeds, 3000);
 }
-
 seedTime();
 
 module.exports = app;

@@ -25,6 +25,6 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  Art.sync({ force: true });
+  //Art.sync({ force: true });
   return Art;
 };

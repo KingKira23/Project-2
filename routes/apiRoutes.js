@@ -11,7 +11,6 @@ module.exports = function(app, cloudinary) {
   });
 
   app.post("/api/signup", function(req, res) {
-    console.log(req.body);
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -61,26 +60,6 @@ module.exports = function(app, cloudinary) {
     });
   });
 
-  //image upload to 3rd party image host
-  app.post("/api/uploads", function(req, res) {
-    cloudinary.uploader.upload(req.files.photo.tempFilePath, function(
-      err,
-      result
-    ) {
-      if (err) {
-        throw err;
-      }
-      console.log(result);
-    });
-  });
-
-  // Create a new art
-  // app.post("/api/art", function(req, res) {
-  //   db.Art.create(req.body).then(function(artBudDB) {
-  //     res.json(artBudDB);
-  //   });
-  // });
-
   // Delete an art by id
   app.delete("/api/art/:art_id", function(req, res) {
     // eslint-disable-next-line camelcase
@@ -123,7 +102,11 @@ module.exports = function(app, cloudinary) {
       if (err) {
         throw err;
       }
-      console.log(result);
+      db.Art.create({
+        art_name: req.files.photo.name,
+        url_link: result.url,
+        UserId: 1
+      })
       res.status(200).end();
     });
   });
