@@ -1,16 +1,31 @@
-<div class="row mb-3">
+<div class="nav row mb-3">
+
     {{#unless splash}}
-    <div class="col head-color">
+    <nav class="navbar col head-color">
     {{/unless}}
     {{#if splash}}
-    <div class="col head-color splash-head">
+    <nav class="navbar col head-color splash-head">
     {{/if}}
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <li class="nav-link" href="#">
-                    Art Bud
-                </li>
-            </li>
-        </ul>
-    </div>
+        <span class="nav-link navbar-brand mx-auto" href="#">
+            <h1 class="noselect ml-5">Art Bud</h1>
+        </span>
+        <span class="nav-item dropdown">
+                {{!-- if logged out
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i><i class="far fa-user"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/signup">Signup</a>
+                <a class="dropdown-item loginBtn" href="#">Signup</a>
+            </div>
+                    --}}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user fa-3x brand-color"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="user-dropdown">
+                <a class="dropdown-item" href="#" id="userProfile">User Profile</a>
+                <a class="dropdown-item" href="#" id="logout">Logout</a>
+            </div>
+        </span>
+    </nav>
 </div>
