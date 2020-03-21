@@ -1,11 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
-<<<<<<< HEAD
-module.exports = function(app) {
-=======
 module.exports = function(app, cloudinary) {
->>>>>>> f4bb4437c059534375f10bcdff3591a0afbce3ea
   app.post("/login", passport.authenticate("local"), function(req, res) {
     res.redirect("/gallery" + req.user.username);
   });
