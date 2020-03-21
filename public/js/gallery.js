@@ -1,5 +1,7 @@
 $(document).ready(function() {
   const $galleryContainer = $("#galleryContainer");
+  const $body = $("body");
+  $body.addClass("galleryBody");
 
   const getAllArt = () => {
     $.get("/api/art", function(data) {
@@ -12,11 +14,13 @@ $(document).ready(function() {
     for (let key of art) {
       let nextImage = key;
       $galleryContainer.append(
-        `<div class="col-xl-4 col-m-6 col-xs-12">
-            <div class="frame viewImage">
-                <img class="img-fluid" src="${nextImage.url_link}" alt="${nextImage.art_name}" data-id="${nextImage.id}" class="art"></img>
+        `<div class="col-xl-4 col-m-6 col-xs-12 px-0">
+            <div class="frame viewImage py-5 px-5 text-center">
+              <div class="artBackground">
+                <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}" data-id="${nextImage.id}"></img>
+              </div>
             </div>
-            </div>`
+          </div>`
       );
     }
   };
