@@ -1,20 +1,27 @@
-$(document).ready(function() {
-  //hide scrollbar
-  $body = $("body");
-  $container = $(".container-fluid");
+var $uploadImg = $("#imgUpload");
 
-  $container.css("");
-
-  //handle navbar actions
-  // <a class="dropdown-item" href="#" id="userProfile">User Profile</a>
-  // <a class="dropdown-item" href="#" id="logout">Logout</a>
-
-  $("#userProfile").on("click", function(event) {
-    event.preventDefault();
-    console.log("navigate to user!");
-    if (userId) {
-      $.get("/user/" + userId, function(data) {
-        console.log(data);
+// The API object contains methods for each kind of request we'll make
+var API = {
+  startUpload: function(form) {
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      url: "/api/uploads",
+      type: "POST",
+      headers: {
+        "cache-control": "no-cache",
+        "postman-token": "713a4d67-e756-42f9-8214-179c033bad45"
+      },
+      processData: false,
+      contentType: false,
+      mimeType: "multipart/form-data",
+      data: form
+    })
+      .then(function(res) {
+        console.log(res);
+      })
+      .catch(function(err) {
+        console.log(err);
       });
     } else {
       window.location.assign("/signup");

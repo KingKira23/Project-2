@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 require("dotenv").config();
 
 var passport = require("passport");

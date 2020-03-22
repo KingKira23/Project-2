@@ -1,15 +1,20 @@
+/* eslint-disable camelcase */
 var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
-  app.post(
-    "/api/login",
-    passport.authenticate("local", {
-      successRedirect: "/gallery",
-      failureRedirect: "/",
-      failureFlash: true
-    })
-  );
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    console.log(req.body);
+    res.redirect("/gallery" + req.user.username);
+  });
+  // app.post(
+  //   "/api/login",
+  //   passport.authenticate("local", {
+  //     successRedirect: "/gallery",
+  //     failureRedirect: "/",
+  //     failureFlash: true
+  //   })
+  // );
 
   app.post("/api/signup", function(req, res) {
     db.User.create({
@@ -18,7 +23,7 @@ module.exports = function(app, cloudinary) {
       name: req.body.name
     })
       .then(function() {
-        res.redirect("/gallery");
+        res.redirect("/");
       })
       .catch(function(err) {
         res.status(401).json(err);

@@ -33,6 +33,7 @@
     }
 
     $(function() {
+                console.log("runs")
         $("#signup").on("click", function(event) {
             event.preventDefault();
             let password = $("#password").val();
@@ -57,7 +58,7 @@
                 url: "api/signup",
                 data: JSON.stringify(newUser)
                 }).then(function(data) {         
-                    window.location.replace("/gallery");
+                    window.location.replace("/");
                     // If there's an error, handle it by throwing up a bootstrap alert
                 });
         })

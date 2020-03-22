@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Art.associate = function(models){
+  Art.associate = function(models) {
     Art.belongsTo(models.User, {
       foreignKey: {
         allowNull: false

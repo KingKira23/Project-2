@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 //var app = require("./server");
 var db = require("./models");
 
