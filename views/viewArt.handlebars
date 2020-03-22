@@ -1,23 +1,17 @@
 <div class="container-fluid">
     <div class="main">
         {{> header splash=true}}
-        <div class="row"> <!-- Image area -->
-            <div class="col">
-                <div class="frame">    
-                    <div class="artBackground">
-                        <img src="{{ url_link }}" alt="{{ art_name }}"></img>
-                    </div>
-                </div>
+        <div class="row" id="artContainer" data-id="{{ artId }}"> <!-- Image area -->
+
                 <p>{{ art_name }}</p>
                 <p>{{ UserId }}</p>
             </div>
         </div>
-         <div class="row"> <!-- Comments area -->
-            <div class="col">
-                {{#each comment}}
-                    <p>{{commentText}} - {{commentAuthor}}</p>
-                {{/each}}
-            </div>
+         <div class="row" id="commentContainer"> <!-- Comments area -->
+           
         </div>
     </div>
 </div>
+
+
+<script src="/js/viewart.js"></script>

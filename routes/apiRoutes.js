@@ -7,6 +7,7 @@ module.exports = function(app, cloudinary) {
   //   console.log(req.body);
   //   res.redirect("/gallery" + req.user.username);
   // });
+
   app.post(
     "/api/login",
     passport.authenticate("local", {
@@ -39,6 +40,13 @@ module.exports = function(app, cloudinary) {
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {
       res.json(artBudDB);
+    });
+  });
+
+  app.get("/api/gallery/:id", function(req, res) {
+    db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+      console.log(response.dataValues);
+      res.json(response.dataValues);
     });
   });
 
@@ -86,10 +94,19 @@ module.exports = function(app, cloudinary) {
     });
   });
 
-  // Get all comments
-  app.get("/api/comment/:userId", function(req, res) {
+  // Get all comments by user
+  app.get("/api/comment/user/:userId", function(req, res) {
     db.Comment.findAll({
       where: { UserId: req.params.userId }
+    }).then(function(artBudDB) {
+      res.json(artBudDB);
+    });
+  });
+
+  // Get all comments by user
+  app.get("/api/comment/art/:artId", function(req, res) {
+    db.Comment.findAll({
+      where: { artId: req.params.artId }
     }).then(function(artBudDB) {
       res.json(artBudDB);
     });
