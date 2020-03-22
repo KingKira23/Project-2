@@ -39,8 +39,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 {{!-- listen for login and handle form --}}
 <script>
@@ -62,9 +60,11 @@
                 url: "api/login",
                 data: JSON.stringify(userLogin)
                 })
-                .then(function(data) {         
-                    window.location.replace("/gallery");
-                });
+                {{!-- .then(function(data) {   --}}
+                    {{!-- console.log(data);        --}}
+                    {{!-- window.location.replace("/gallery"); --}}
+                {{!-- }) --}}
+                ;
         })
     });
 </script>

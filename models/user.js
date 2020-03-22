@@ -1,11 +1,7 @@
 var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
-<<<<<<< HEAD
 
-=======
-  //
->>>>>>> a7a9495e4a92ddc8c080249bd7fd3c43e5881656
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
     name: {
@@ -45,21 +41,11 @@ module.exports = function(sequelize, DataTypes) {
     );
   });
 
-<<<<<<< HEAD
-=======
   //User.sync({ force: true });
->>>>>>> a7a9495e4a92ddc8c080249bd7fd3c43e5881656
   User.associate = function(models) {
     User.hasMany(models.Art, { onDelete: "cascade" });
     User.hasMany(models.Comment, { onDelete: "cascade" });
   };
-<<<<<<< HEAD
-  //User.sync({ force: true });
-=======
-  // User.assosiate = function (models) {
-  //   User.hasOne(models.Comment, { onDelete: "cascade" });
-  // };
->>>>>>> a7a9495e4a92ddc8c080249bd7fd3c43e5881656
 
   return User;
 };

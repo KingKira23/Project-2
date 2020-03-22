@@ -3,8 +3,10 @@
         {{> header splash=false}}
         <div class="row"> <!-- Image area -->
             <div class="col">
-                <img src="{{ artUrl }}" alt="{{ artTitle }}"></img>
-                <p>{{ artTitle }}</p>
+                <div class="frame">
+                    <img src="{{ url_link }}" alt="{{ art_name }}"></img>
+                </div>
+                <p>{{ art_name }}</p>
                 <p>{{ artist }}</p>
             </div>
         </div>
