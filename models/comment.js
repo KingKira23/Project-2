@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Comment.sync({ force: true });
+  //Comment.sync({ force: true });
   Comment.associate = function(models) {
     Comment.belongsTo(models.User, {
       foreignKey: {
