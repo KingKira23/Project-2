@@ -115,7 +115,7 @@ module.exports = function(app, cloudinary) {
         art_name: req.files.photo.name,
         url_link: result.url,
         UserId: req.body.userId
-      })
+      });
       res.status(200).end();
     });
   });
