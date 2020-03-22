@@ -139,7 +139,7 @@ module.exports = function(app, cloudinary) {
         throw err;
       }
       db.Art.create({
-        art_name: req.files.photo.name,
+        art_name: req.body.artName,
         url_link: result.url,
         UserId: req.body.userId
       });

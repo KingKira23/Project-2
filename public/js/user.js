@@ -9,7 +9,6 @@ $(document).ready(function() {
   const getUserArt = () => {
     $.get("/api/art/" + userId, function(data) {
       const artPieces = data;
-      console.log(data);
       buildGallery(artPieces);
     });
   };
@@ -17,7 +16,6 @@ $(document).ready(function() {
   const getUserComments = () => {
     $.get("/api/comment/user/" + userId, function(data) {
       const allComments = data;
-      console.log(data);
       buildComments(allComments);
     });
   };
@@ -79,11 +77,18 @@ $(document).ready(function() {
 
   var handleUpload = function(event) {
     event.preventDefault();
+    const artName = $("#artName").val();
+    if (artName === "") {
+      //alert user to add a title
+      return;
+    }
+    console.log(artName);
     console.log("Handling upload");
     var file = event.target.files[0];
     var formData = new FormData();
     formData.append("photo", file);
     formData.append("userId", userId);
+    formData.append("artName", artName);
     API.startUpload(formData);
   };
 
