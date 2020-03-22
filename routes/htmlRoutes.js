@@ -18,7 +18,18 @@ module.exports = function(app) {
 
   //load single image view
   app.get("/gallery/:id", function(req, res) {
-    res.render("viewArt", { artId: req.params.id });
+    if (req.session.passport) {
+      if (req.session.passport.user) {
+        res.render("viewArt", {
+          artId: req.params.id,
+          userId: req.session.passport.user.id
+        });
+      } else {
+        res.render("viewArt", { artId: req.params.id, userId: null });
+      }
+    } else {
+      res.render("viewArt", { artId: req.params.id, userId: null });
+    }
   });
 
   //load user page

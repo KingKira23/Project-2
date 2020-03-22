@@ -39,14 +39,23 @@ $(document).ready(function() {
   };
 
   const buildComments = comments => {
+    let highlight = true;
+
     for (let comment of comments) {
-      let nextComment = comment;
-      $commentContainer.append(
-        `<div class="col-12 px-4">
-           <div class="text-center">
-           <p>${nextComment.comment}
-        </div>`
-      );
+      if (highlight) {
+        $commentContainer.append(
+          `<li class="list-group-item comment-highlight w-80">
+                <p> ${comment.comment} - ${comment.ArtId} </p>
+            </li>`
+        );
+      } else {
+        $commentContainer.append(
+          `<li class="list-group-item w-80">
+                <p> ${comment.comment} - ${comment.ArtId} </p>
+            </li>`
+        );
+      }
+      highlight = !highlight;
     }
   };
 
