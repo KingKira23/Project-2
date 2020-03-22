@@ -77,8 +77,10 @@ module.exports = function(app, cloudinary) {
   });
 
   // Get all comments
-  app.get("/api/comment", function(req, res) {
-    db.Comment.findAll({}).then(function(artBudDB) {
+  app.get("/api/comment/:userId", function(req, res) {
+    db.Comment.findAll({
+      where: { UserId: req.params.userId }
+    }).then(function(artBudDB) {
       res.json(artBudDB);
     });
   });
