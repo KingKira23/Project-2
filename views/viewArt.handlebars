@@ -1,13 +1,15 @@
 <div class="container-fluid">
     <div class="main">
-        {{> header splash=false}}
+        {{> header splash=true}}
         <div class="row"> <!-- Image area -->
             <div class="col">
-                <div class="frame">
-                    <img src="{{ url_link }}" alt="{{ art_name }}"></img>
+                <div class="frame">    
+                    <div class="artBackground">
+                        <img src="{{ url_link }}" alt="{{ art_name }}"></img>
+                    </div>
                 </div>
                 <p>{{ art_name }}</p>
-                <p>{{ artist }}</p>
+                <p>{{ UserId }}</p>
             </div>
         </div>
          <div class="row"> <!-- Comments area -->

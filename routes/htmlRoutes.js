@@ -11,7 +11,7 @@ module.exports = function(app) {
     res.render("gallery");
   });
 
-  //load gallery page
+  //load signup page
   app.get("/signup", function(req, res) {
     res.render("signup");
   });
@@ -19,6 +19,7 @@ module.exports = function(app) {
   //load single image view
   app.get("/gallery/:id", function(req, res) {
     db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+      console.log(response);
       res.render("viewArt", {
         art: response
       });
