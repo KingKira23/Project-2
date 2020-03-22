@@ -1,6 +1,6 @@
 $(document).ready(function() {
   const $body = $("body");
-  $body.addClass("Body");
+  $body.addClass("userBody");
   const $artContainer = $("#artContainer");
   const $commentContainer = $("#commentContainer");
   var $uploadImg = $("#imgUpload");
