@@ -44,8 +44,8 @@
 </div>
 {{!-- listen for login and handle form --}}
 <script>
-    $(function() {
-        $("#sendLogin").on("click", function(event) {
+    $(document).ready(function() {
+        $("#sendLogin").on("submit", function(event) {
             event.preventDefault();
             const userLogin = {
                 username: $("#username").val().trim(),
@@ -59,7 +59,13 @@
                 type: "POST",
                 url: "api/login",
                 data: JSON.stringify(userLogin)
+            })
+                .then(function(data) {         
+                    window.location.replace("/gallery");
             });
+                .catch(function(err) {
+                    console.log(err);
+      });
         })
     });
 </script>

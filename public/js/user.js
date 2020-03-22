@@ -1,6 +1,6 @@
 $(document).ready(function() {
   const $body = $("body");
-  $body.addClass("userBody");
+  $body.addClass("Body");
   const $artContainer = $("#artContainer");
   const $commentContainer = $("#commentContainer");
   var $uploadImg = $("#imgUpload");
@@ -16,7 +16,8 @@ $(document).ready(function() {
 
   const getUserComments = () => {
     $.get("/api/comments/" + userId, function(data) {
-        console.log(data);
+      const comments = data;
+      buildComments(comments);
     });
   };
 

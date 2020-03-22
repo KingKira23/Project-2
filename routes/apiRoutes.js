@@ -2,7 +2,8 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
-  app.post("/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    console.log(req.body);
     res.redirect("/gallery" + req.user.username);
   });
 
@@ -13,7 +14,7 @@ module.exports = function(app, cloudinary) {
       name: req.body.name
     })
       .then(function() {
-        res.redirect("/gallery");
+        res.redirect("/");
       })
       .catch(function(err) {
         res.status(401).json(err);
@@ -63,7 +64,7 @@ module.exports = function(app, cloudinary) {
       where: { UserId: req.params.userId }
     }).then(function(response) {
       res.json(response);
-    });
+    })
   });
 
   // Delete an art by id
@@ -113,7 +114,7 @@ module.exports = function(app, cloudinary) {
         art_name: req.files.photo.name,
         url_link: result.url,
         UserId: req.body.userId
-      })
+      });
       res.status(200).end();
     });
   });
