@@ -28,6 +28,9 @@ $(document).ready(function() {
             <img class="art img-fluid mx-auto" src="${art.url_link}" alt="${art.art_name}" data-id="${art.id}"></img>
             </div>
         </div>
+        <div class="text-center mt-1 mb-5">
+            <span class="label bg-white my-3 py-1 px-3">${art.art_name}</span>
+        </div>
         </div>`
     );
   };

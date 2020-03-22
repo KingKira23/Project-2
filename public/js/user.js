@@ -30,6 +30,9 @@ $(document).ready(function() {
                     <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}"></img>
                 </div>
             </div>
+            <div class="text-center mt-1">
+              <span class="label bg-white my-3 py-1 px-3">${nextImage.art_name}</span>
+            </div>
         </div>`
       );
     }
