@@ -94,6 +94,9 @@ h1 {
   text-align: center;
 }
 
+.styler{
+  background-color: rgb(161, 166, 172);
+}
 
 .vanta-canvas{
   min-height: 100% !important;
