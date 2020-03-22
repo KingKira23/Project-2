@@ -15,9 +15,10 @@ $(document).ready(function() {
   };
 
   const getUserComments = () => {
-    $.get("/api/comments/" + userId, function(data) {
-      const comments = data;
-      buildComments(comments);
+    $.get("/api/comment/" + userId, function(data) {
+      const allComments = data;
+      console.log(data);
+      buildComments(allComments);
     });
   };
 
@@ -41,14 +42,15 @@ $(document).ready(function() {
       let nextComment = comment;
       $commentContainer.append(
         `<div class="col-12 px-4">
-           
+           <div class="text-center">
+           <p>${nextComment.comment}
         </div>`
       );
     }
   };
 
   getUserArt();
-  //getUserComments();
+  getUserComments();
 
   // The API object contains methods for each kind of request we'll make
   var API = {
