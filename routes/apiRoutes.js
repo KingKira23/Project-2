@@ -82,10 +82,8 @@ module.exports = function(app, cloudinary) {
   });
 
   // Get all comments
-  app.get("/api/comment/:userId", function(req, res) {
-    db.Comment.findAll({
-      where: { UserId: req.params.userId }
-    }).then(function(artBudDB) {
+  app.get("/api/comment", function(req, res) {
+    db.Comment.findAll({}).then(function(artBudDB) {
       res.json(artBudDB);
     });
   });
@@ -119,17 +117,8 @@ module.exports = function(app, cloudinary) {
       db.Art.create({
         art_name: req.files.photo.name,
         url_link: result.url,
-<<<<<<< HEAD
-        UserId: 1
-      });
-=======
         UserId: req.body.userId
-<<<<<<< HEAD
       })
->>>>>>> c23d04fbf1cc32d982784ff11d0752351e054fee
-=======
-      });
->>>>>>> d9be7dafddd4abbe174a5f72f43eb39f75a07fbf
       res.status(200).end();
     });
   });
