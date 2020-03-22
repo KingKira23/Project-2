@@ -29,7 +29,7 @@ module.exports = function(app) {
     });
   });
 
-//load user page
+  //load user page
   app.get("/user/:id", function(req, res) {
     // db.User.findOne({ where: { id: req.params.id } }).then(function(response) {
     //   res.render("user", {

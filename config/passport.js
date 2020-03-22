@@ -11,7 +11,7 @@ passport.use(
     function(username, password, done) {
       db.User.findOne({
         where: {
-          name: username
+          username: username
         }
       }).then(function(dbUser) {
         if (!dbUser) {
