@@ -3,9 +3,10 @@ var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    console.log(req.body);
-    res.redirect("/gallery" + req.user.username);
-    console.log(req.user.id);
+    //console.log(req.session);
+    req.session.userId = req.session.passport.user.dataValues.id;
+    res.redirect("/gallery");
+    //console.log(req.user.id);
   });
 
   /*

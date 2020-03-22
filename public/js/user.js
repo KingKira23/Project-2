@@ -82,7 +82,7 @@ $(document).ready(function() {
       //alert user to add a title
       return;
     }
-    
+
     console.log("Handling upload");
     var file = event.target.files[0];
     var formData = new FormData();

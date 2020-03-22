@@ -18,22 +18,22 @@ module.exports = function(app) {
 
   //load single image view
   app.get("/gallery/:id", function(req, res) {
-    // db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
-    //   console.log(response);
-    //   console.log(response.Art);
-    //   console.log(response.dataValues);
-    //   res.render("viewArt", {
-    //     art: response
-    //   });
-    // });
     res.render("viewArt", { artId: req.params.id });
   });
 
   //load user page
-  app.get("/user/:id", function(req, res) {
-    res.render("user", {
-      userId: req.params.id
-    });
+  app.get("/user/", function(req, res) {
+    if (req.session.passport) {
+      if (req.session.passport.user) {
+        res.render("user", {
+          userId: req.session.passport.user.id
+        });
+      } else {
+        res.render("splashPage");
+      }
+    } else {
+      res.render("splashPage");
+    }
   });
 
   // Render 404 page for any unmatched routes
