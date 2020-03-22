@@ -6,7 +6,8 @@ var flash = require("connect-flash");
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expfile = require("express-fileupload");
-
+var session = require("express-session");
+var cookiePerser = require("cookie-parser");
 var db = require("./models");
 
 var app = express();
@@ -27,8 +28,11 @@ var seed = require("./seed");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(
+  session({ secret: "keyboard cat", resave: false, saveUninitialized: true })
+);
 app.use(express.static("public"));
-
+app.use(cookiePerser());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -46,7 +50,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app, cloudinary);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

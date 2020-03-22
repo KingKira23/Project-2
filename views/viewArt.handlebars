@@ -1,19 +1,34 @@
 <div class="container-fluid">
     <div class="main">
-        {{> header splash=false}}
-        <div class="row"> <!-- Image area -->
-            <div class="col">
-                <img src="{{ artUrl }}" alt="{{ artTitle }}"></img>
-                <p>{{ artTitle }}</p>
-                <p>{{ artist }}</p>
-            </div>
+        {{> header splash=true}}
+        <div class="row" id="artContainer" data-id="{{ artId }}"> <!-- Image area -->
+
         </div>
-         <div class="row"> <!-- Comments area -->
-            <div class="col">
-                {{#each comment}}
-                    <p>{{commentText}} - {{commentAuthor}}</p>
-                {{/each}}
-            </div>
+         <div class="row mb-4"> <!-- Comments area -->
+         <div class="col-8 offset-2">
+            <ul class="list-group list-group-flush" id="commentContainer">
+
+            </ul>
+         </div>
+           
         </div>
     </div>
+     <footer class="footer">
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uploadFormContainer" aria-expanded="false" aria-controls="uploadFormContainer">Add a comment</button>
+    <div class="collapse expandFooter" id="uploadFormContainer">
+        <div class="card card-body styler container">
+            <form class="container" action="" id="commentUpload">
+                <div class="form-group text-left">
+                    <label for="message">Enter your comment here</label>
+                    <textarea class="form-control" id="message" placeholder="Beautiful!"></textarea>
+                </div>
+                <button class="btn btn-secondary" id="commentSubmit">Submit comment</button>
+            </form>
+            <br><br>
+        </div>
+    </div>
+    </footer>
 </div>
+
+
+<script src="/js/viewart.js"></script>

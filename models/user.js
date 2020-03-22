@@ -1,7 +1,6 @@
 var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
-  //
   var User = sequelize.define("User", {
     // eslint-disable-next-line camelcase
     name: {
@@ -46,9 +45,6 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Art, { onDelete: "cascade" });
     User.hasMany(models.Comment, { onDelete: "cascade" });
   };
-  // User.assosiate = function (models) {
-  //   User.hasOne(models.Comment, { onDelete: "cascade" });
-  // };
 
   return User;
 };

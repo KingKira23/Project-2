@@ -2,12 +2,17 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
+  // app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  //   console.log(req.body);
+  //   res.redirect("/gallery" + req.user.username);
+  // });
+
   app.post(
     "/api/login",
     passport.authenticate("local", {
-      successRedirect: "/gallery",
-      failureRedirect: "/",
-      failureFlash: true
+      successRedirect: "/gallery/",
+      failureRedirect: "/"
+      //failureFlash: true
     })
   );
 
@@ -34,6 +39,13 @@ module.exports = function(app, cloudinary) {
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(artBudDB) {
       res.json(artBudDB);
+    });
+  });
+
+  app.get("/api/gallery/:id", function(req, res) {
+    db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+      console.log(response.dataValues);
+      res.json(response.dataValues);
     });
   });
 
@@ -81,9 +93,20 @@ module.exports = function(app, cloudinary) {
     });
   });
 
-  // Get all comments
-  app.get("/api/comment", function(req, res) {
-    db.Comment.findAll({}).then(function(artBudDB) {
+  // Get all comments by user
+  app.get("/api/comment/user/:userId", function(req, res) {
+    db.Comment.findAll({
+      where: { UserId: req.params.userId }
+    }).then(function(artBudDB) {
+      res.json(artBudDB);
+    });
+  });
+
+  // Get all comments by user
+  app.get("/api/comment/art/:artId", function(req, res) {
+    db.Comment.findAll({
+      where: { artId: req.params.artId }
+    }).then(function(artBudDB) {
       res.json(artBudDB);
     });
   });
@@ -115,10 +138,10 @@ module.exports = function(app, cloudinary) {
         throw err;
       }
       db.Art.create({
-        art_name: req.files.photo.name,
+        art_name: req.body.artName,
         url_link: result.url,
         UserId: req.body.userId
-      })
+      });
       res.status(200).end();
     });
   });

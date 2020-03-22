@@ -9,15 +9,13 @@ $(document).ready(function() {
   const getUserArt = () => {
     $.get("/api/art/" + userId, function(data) {
       const artPieces = data;
-      console.log(data);
       buildGallery(artPieces);
     });
   };
 
   const getUserComments = () => {
-    $.get("/api/comment/" + userId, function(data) {
+    $.get("/api/comment/user/" + userId, function(data) {
       const allComments = data;
-      console.log(data);
       buildComments(allComments);
     });
   };
@@ -27,9 +25,9 @@ $(document).ready(function() {
       let nextImage = art;
       $artContainer.append(
         `<div class="col-xl-4 col-m-6 col-xs-12 px-0">
-            <div class="frame viewImage py-5 px-5 text-center">
+            <div class="frame viewImage py-5 px-5 text-center" data-id="${nextImage.id}">
                 <div class="artBackground">
-                    <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}" data-id="${nextImage.id}"></img>
+                    <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}"></img>
                 </div>
             </div>
         </div>`
@@ -79,17 +77,27 @@ $(document).ready(function() {
 
   var handleUpload = function(event) {
     event.preventDefault();
+    const artName = $("#artName").val();
+    if (artName === "") {
+      //alert user to add a title
+      return;
+    }
+    
     console.log("Handling upload");
-    console.log($uploadImg);
-    console.log(event);
     var file = event.target.files[0];
     var formData = new FormData();
     formData.append("photo", file);
     formData.append("userId", userId);
+    formData.append("artName", artName);
     API.startUpload(formData);
   };
 
-  // Add event listeners to the submit and delete buttons
+  const viewImage = event => {
+    event.stopPropagation();
+    const id = event.currentTarget.dataset.id;
+    window.location.assign("/gallery/" + id);
+  };
+
   $uploadImg.on("change", handleUpload);
-  // $("#imageUpload").on("submit", handleUpload);
+  $(document).on("click", ".viewImage", viewImage);
 });

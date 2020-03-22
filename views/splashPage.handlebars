@@ -39,9 +39,10 @@
             </div>
         </div>
     </div>
-
-
 </div>
+<script src="/js/three.r95.min.js"></script>
+<script src="/js/vanta.birds.min.js"></script>
+<script src="/js/vanta.js"></script>
 {{!-- listen for login and handle form --}}
 <script>
 
@@ -62,7 +63,8 @@
                 url: "api/login",
                 data: JSON.stringify(userLogin)
                 })
-                .then(function(data) {         
+                .then(function(data) {  
+                    console.log(data);       
                     window.location.replace("/gallery");
                 });
         })
