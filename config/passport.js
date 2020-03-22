@@ -30,16 +30,20 @@ passport.use(
           });
         }
         // If none of the above, return the user
-        console.log("made it out alive");
-        return done(null, dbUser, {
-          message: "Log-in Successful."
-        });
+        else {
+          console.log("made it out alive");
+          console.log(dbUser);
+          return done(null, dbUser, {
+            message: "Log-in Successful."
+          });
+        }
       });
     }
   )
 );
 
 passport.serializeUser(function(user, cb) {
+  console.log(user);
   cb(null, user);
 });
 
