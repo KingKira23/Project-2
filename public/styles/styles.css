@@ -1,5 +1,67 @@
 html, body {
   height: 100%;
+  /* overflow: hidden; */
+}
+
+.container-fluid {
+  min-height: 100%;
+  width: 100%;
+  /* overflow-y: scroll; */
+  padding-right: 0px;
+}
+
+.row {
+  margin-right: 0px !important;
+}
+
+.navbar-brand {
+  font-family: 'Nothing You Could Do', cursive;
+  font-weight: bold;
+  color: #97ABB1;
+  opacity: 1;
+ }
+
+h1 {
+  font-family: 'Nothing You Could Do', cursive;
+  font-weight: inherit;
+}
+
+/* prevent text selection */
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+            opacity: 1;
+}
+
+.brand-color {
+  color: #97ABB1;
+}
+
+/* hide user dropdown carrat */
+.dropdown-toggle::after {
+  display: none;
+}
+
+/* show full dropdown on screen */
+#user-dropdown {
+  left: -4.4rem;
+}
+
+.comment-highlight {
+  background-color: #97ABB1;
+}
+
+.galleryBody {
+  background-image: url('../img/Museum.jpeg');
+  background-size: auto;
+  background-position: center;
+}
+
+.userBody {
+  background-image: url('../img/wood.jpg');
 }
 
 .list-group-item {
@@ -10,6 +72,13 @@ html, body {
   position: fixed;
   bottom:0;
   width: 80%;
+  text-align: center;
+}
+
+.frame {
+  background-image: url('../img/frame.png');
+  background-position: center;
+  background-size:100% 100%;
 }
 
 .head-color {
@@ -17,17 +86,36 @@ html, body {
 }
 
 .splash-head{
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
-.container-fluid {
-  min-height: 100%;
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: maroon;
+  text-align: center;
 }
 
+.styler{
+  background-color: rgb(161, 166, 172);
+}
 
 .vanta-canvas{
   min-height: 100% !important;
   height: 100%;
+}
+
+.art {
+  padding: 5%;
+  /* background-color: whitesmoke; */
+
+}
+
+.artBackground {
+  background-color: whitesmoke;
+  margin: 15%;
 }
 
 .btn-primary{

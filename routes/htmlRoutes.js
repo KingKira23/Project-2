@@ -11,29 +11,28 @@ module.exports = function(app) {
     res.render("gallery");
   });
 
-  //load gallery page
+  //load signup page
   app.get("/signup", function(req, res) {
     res.render("signup");
   });
 
   //load single image view
   app.get("/gallery/:id", function(req, res) {
-    db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
-      res.render("viewArt", {
-        art: response
-      });
-    });
+    // db.Art.findOne({ where: { id: req.params.id } }).then(function(response) {
+    //   console.log(response);
+    //   console.log(response.Art);
+    //   console.log(response.dataValues);
+    //   res.render("viewArt", {
+    //     art: response
+    //   });
+    // });
+    res.render("viewArt", { artId: req.params.id });
   });
 
   //load user page
   app.get("/user/:id", function(req, res) {
-    // db.User.findOne({ where: { id: req.params.id } }).then(function(response) {
-    //   res.render("user", {
-    //     user: response
-    //   });
-    // });
     res.render("user", {
-      username: req.params.id
+      userId: req.params.id
     });
   });
 

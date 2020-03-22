@@ -34,17 +34,20 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="sendLogin">Login</button>
+                    <button type="submit" class="btn btn-primary" id="sendLogin">Login</button>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
+<script src="/js/three.r95.min.js"></script>
+<script src="/js/vanta.birds.min.js"></script>
+<script src="/js/vanta.js"></script>
 {{!-- listen for login and handle form --}}
 <script>
+
     $(function() {
+        console.log("runs")
         $("#sendLogin").on("click", function(event) {
             event.preventDefault();
             const userLogin = {
@@ -59,7 +62,11 @@
                 type: "POST",
                 url: "api/login",
                 data: JSON.stringify(userLogin)
-            });
+                })
+                .then(function(data) {  
+                    console.log(data);       
+                    window.location.replace("/gallery");
+                });
         })
     });
 </script>
