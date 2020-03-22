@@ -3,14 +3,31 @@
         {{> header splash=true}}
         <div class="row" id="artContainer" data-id="{{ artId }}"> <!-- Image area -->
 
-                <p>{{ art_name }}</p>
-                <p>{{ UserId }}</p>
-            </div>
         </div>
-         <div class="row" id="commentContainer"> <!-- Comments area -->
+         <div class="row mb-4"> <!-- Comments area -->
+         <div class="col-8 offset-2">
+            <ul class="list-group list-group-flush" id="commentContainer">
+
+            </ul>
+         </div>
            
         </div>
     </div>
+     <footer class="footer">
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uploadFormContainer" aria-expanded="false" aria-controls="uploadFormContainer">Add a comment</button>
+    <div class="collapse expandFooter" id="uploadFormContainer">
+        <div class="card card-body styler container">
+            <form class="container" action="" id="commentUpload">
+                <div class="form-group text-left">
+                    <label for="message">Enter your comment here</label>
+                    <textarea class="form-control" id="message" placeholder="Beautiful!"></textarea>
+                </div>
+                <button class="btn btn-secondary" id="commentSubmit">Submit comment</button>
+            </form>
+            <br><br>
+        </div>
+    </div>
+    </footer>
 </div>
 
 

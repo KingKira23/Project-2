@@ -25,9 +25,9 @@ $(document).ready(function() {
       let nextImage = art;
       $artContainer.append(
         `<div class="col-xl-4 col-m-6 col-xs-12 px-0">
-            <div class="frame viewImage py-5 px-5 text-center">
+            <div class="frame viewImage py-5 px-5 text-center" data-id="${nextImage.id}">
                 <div class="artBackground">
-                    <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}" data-id="${nextImage.id}"></img>
+                    <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}"></img>
                 </div>
             </div>
         </div>`
@@ -82,7 +82,7 @@ $(document).ready(function() {
       //alert user to add a title
       return;
     }
-    console.log(artName);
+    
     console.log("Handling upload");
     var file = event.target.files[0];
     var formData = new FormData();
@@ -92,7 +92,12 @@ $(document).ready(function() {
     API.startUpload(formData);
   };
 
-  // Add event listeners to the submit and delete buttons
+  const viewImage = event => {
+    event.stopPropagation();
+    const id = event.currentTarget.dataset.id;
+    window.location.assign("/gallery/" + id);
+  };
+
   $uploadImg.on("change", handleUpload);
-  // $("#imageUpload").on("submit", handleUpload);
+  $(document).on("click", ".viewImage", viewImage);
 });

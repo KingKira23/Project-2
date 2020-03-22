@@ -50,6 +50,10 @@ h1 {
   left: -4.4rem;
 }
 
+.comment-highlight {
+  background-color: #97ABB1;
+}
+
 .galleryBody {
   background-image: url('../img/Museum.jpeg');
   background-size: auto;

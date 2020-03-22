@@ -4,12 +4,11 @@ $(document).ready(function() {
   const $artContainer = $("#artContainer");
   const $commentContainer = $("#commentContainer");
   const artId = $artContainer.data("id");
-  //const $commentContainer = $("#commentContainer");
+  const $commentBtn = $("#commentSubmit");
 
   const getArt = () => {
     $.get("/api/gallery/" + artId, function(data) {
       const art = data;
-      console.log(data);
       buildArtView(art);
       getAllComments();
     });
@@ -17,15 +16,14 @@ $(document).ready(function() {
 
   const getAllComments = () => {
     $.get("/api/comment/art/" + artId, function(data) {
-      console.log(data);
       buildCommentView(data);
     });
   };
 
   const buildArtView = art => {
     $artContainer.append(
-      `<div class="col-10 offset-2">
-        <div class="frame viewImage py-5 px-5 text-center">
+      `<div class="col-12 text-center">
+        <div class="frame w-75 py-5 px-5 mx-auto">
             <div class="artBackground">
             <img class="art img-fluid mx-auto" src="${art.url_link}" alt="${art.art_name}" data-id="${art.id}"></img>
             </div>
@@ -35,15 +33,45 @@ $(document).ready(function() {
   };
 
   const buildCommentView = comments => {
+    let highlight = true;
+
     for (let comment of comments) {
-      console.log(comment);
-      $commentContainer.append(
-        `<div class="col-10 offset-2 mt-5">
+      if (highlight) {
+        $commentContainer.append(
+          `<li class="list-group-item comment-highlight">
                 <p> ${comment.comment} - ${comment.UserId} </p>
-            </div>`
-      );
+            </li>`
+        );
+      } else {
+        $commentContainer.append(
+          `<li class="list-group-item">
+                <p> ${comment.comment} - ${comment.UserId} </p>
+            </li>`
+        );
+      }
+      highlight = !highlight;
     }
   };
 
   getArt();
+
+  $commentBtn.on("click", function(event) {
+    event.preventDefault();
+    let newComment = {
+      comment: $("#message").val(),
+      ArtId: artId,
+      UserId: 1
+    };
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "/api/comment",
+      data: JSON.stringify(newComment)
+    }).then(function(data) {
+      window.location.reload();
+      // If there's an error, handle it by throwing up a bootstrap alert
+    });
+  });
 });
