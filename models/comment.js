@@ -10,8 +10,14 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Comment.sync({ force: true });
-  Comment.assosiate = function(models) {
-    Comment.hasOne(models.User, { onDelete: "cascade" });
+  Comment.associate = function(models) {
+    Comment.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
+  //Comment.sync({ force: true });
+
   return Comment;
 };

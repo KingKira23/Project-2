@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Art.assosiate = function(models) {
+  Art.associate = function(models) {
     Art.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
@@ -25,6 +25,6 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  Art.sync({ force: true });
+  //Art.sync({ force: true });
   return Art;
 };
