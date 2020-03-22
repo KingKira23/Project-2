@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       description: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true
     },
 
     username: {
@@ -29,8 +29,8 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  User.prototype.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
+  User.prototype.validPassword = function (pass) {
+    return bcrypt.compareSync(pass, this.password);
   };
 
   User.addHook("beforeCreate", function (user) {

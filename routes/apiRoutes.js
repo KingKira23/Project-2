@@ -2,9 +2,14 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app, cloudinary) {
-  app.post("/login", passport.authenticate("local"), function(req, res) {
-    res.redirect("/gallery" + req.user.username);
-  });
+  app.post(
+    "/api/login",
+    passport.authenticate("local", {
+      successRedirect: "/gallery",
+      failureRedirect: "/",
+      failureFlash: true
+    })
+  );
 
   app.post("/api/signup", function(req, res) {
     db.User.create({
@@ -102,7 +107,7 @@ module.exports = function(app, cloudinary) {
         art_name: req.files.photo.name,
         url_link: result.url,
         UserId: 1
-      })
+      });
       res.status(200).end();
     });
   });

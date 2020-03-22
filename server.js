@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+var passport = require("passport");
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expfile = require("express-fileupload");
@@ -24,6 +25,8 @@ var seed = require("./seed");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Handlebars
 app.engine(
