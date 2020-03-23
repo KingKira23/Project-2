@@ -30,20 +30,32 @@ $(document).ready(function() {
                     <img class="art img-fluid mx-auto" src="${nextImage.url_link}" alt="${nextImage.art_name}"></img>
                 </div>
             </div>
+            <div class="text-center mt-1">
+              <span class="label bg-white my-3 py-1 px-3">${nextImage.art_name}</span>
+            </div>
         </div>`
       );
     }
   };
 
   const buildComments = comments => {
+    let highlight = true;
+
     for (let comment of comments) {
-      let nextComment = comment;
-      $commentContainer.append(
-        `<div class="col-12 px-4">
-           <div class="text-center">
-           <p>${nextComment.comment}
-        </div>`
-      );
+      if (highlight) {
+        $commentContainer.append(
+          `<li class="list-group-item comment-highlight w-80">
+                <p> ${comment.comment} - ${comment.ArtId} </p>
+            </li>`
+        );
+      } else {
+        $commentContainer.append(
+          `<li class="list-group-item w-80">
+                <p> ${comment.comment} - ${comment.ArtId} </p>
+            </li>`
+        );
+      }
+      highlight = !highlight;
     }
   };
 
@@ -82,7 +94,7 @@ $(document).ready(function() {
       //alert user to add a title
       return;
     }
-    
+
     console.log("Handling upload");
     var file = event.target.files[0];
     var formData = new FormData();

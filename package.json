@@ -23,6 +23,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.20.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^6.0.0",
     "eslint": "^6.8.0",
@@ -31,6 +32,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.17.0",
     "lazyload": "^2.0.0-rc.2",
+    "minimist": "^1.2.5",
     "mysql": "^2.18.1",
     "mysql2": "^1.7.0",
     "passport": "^0.4.1",

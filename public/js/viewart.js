@@ -4,6 +4,7 @@ $(document).ready(function() {
   const $artContainer = $("#artContainer");
   const $commentContainer = $("#commentContainer");
   const artId = $artContainer.data("id");
+  const userId = $(".main").data("id");
   const $commentBtn = $("#commentSubmit");
 
   const getArt = () => {
@@ -27,6 +28,9 @@ $(document).ready(function() {
             <div class="artBackground">
             <img class="art img-fluid mx-auto" src="${art.url_link}" alt="${art.art_name}" data-id="${art.id}"></img>
             </div>
+        </div>
+        <div class="text-center mt-1 mb-5">
+            <span class="label bg-white my-3 py-1 px-3">${art.art_name}</span>
         </div>
         </div>`
     );
@@ -57,21 +61,26 @@ $(document).ready(function() {
 
   $commentBtn.on("click", function(event) {
     event.preventDefault();
-    let newComment = {
-      comment: $("#message").val(),
-      ArtId: artId,
-      UserId: 1
-    };
-    $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "/api/comment",
-      data: JSON.stringify(newComment)
-    }).then(function(data) {
-      window.location.reload();
-      // If there's an error, handle it by throwing up a bootstrap alert
-    });
+    if (userId === ""){
+      console.log("nope");
+    } else{
+
+      let newComment = {
+        comment: $("#message").val(),
+        ArtId: artId,
+        UserId: userId
+      };
+      $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: "/api/comment",
+        data: JSON.stringify(newComment)
+      }).then(function(data) {
+        window.location.reload();
+        // If there's an error, handle it by throwing up a bootstrap alert
+      });
+    }
   });
 });

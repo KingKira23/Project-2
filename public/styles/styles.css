@@ -24,6 +24,7 @@ html, body {
 h1 {
   font-family: 'Nothing You Could Do', cursive;
   font-weight: inherit;
+  font-size: 3.5rem;
 }
 
 /* prevent text selection */
@@ -38,6 +39,20 @@ h1 {
 
 .brand-color {
   color: #97ABB1;
+}
+
+.bg-dark{
+  background-color: #6f7479 !important;
+}
+
+.label {
+  border: 0.5rem solid #705846;
+  font-family: 'Merriweather', serif;
+  font-style: italic;
+}
+
+.heading {
+  font-family: 'Merriweather', serif;
 }
 
 /* hide user dropdown carrat */
@@ -58,10 +73,6 @@ h1 {
   background-image: url('../img/Museum.jpeg');
   background-size: auto;
   background-position: center;
-}
-
-.userBody {
-  background-image: url('../img/wood.jpg');
 }
 
 .list-group-item {
@@ -94,8 +105,12 @@ h1 {
   left: 0;
   bottom: 0;
   width: 100%;
-  color: maroon;
+  color: black;
   text-align: center;
+}
+
+.pageExtend{
+  margin-bottom: -20px;
 }
 
 .styler{

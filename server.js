@@ -2,6 +2,7 @@
 require("dotenv").config();
 
 var passport = require("passport");
+var flash = require("connect-flash");
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expfile = require("express-fileupload");
@@ -34,6 +35,7 @@ app.use(express.static("public"));
 app.use(cookiePerser());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Handlebars
 app.engine(
